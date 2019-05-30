@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - { role: apt_setup, tags: ["apt_setup"] } # update, upgrade and set locales
+    - { role: gnome, tags: ["gnome"] } # install gnome-session and related settings
+    - { role: user_setup, tags: ["user_setup"] } # setup user and install minimal system with GUI and sound libs
+    - { role: dotfiles, tags: ["dotfiles"] } # install custom dotfiles
+    - { role: ros_install, tags: ["ros_install"] } # install the ros system inc. desktop-full meta package
+    - { role: training_install, tags: ["training_install"] } # install training specific packages e.g turtlebot3-simulations and evince
+    - { role: python, tags: ["python"] } # install python tooling black pylint etc
+    - { role: vscode, tags: ["vscode"] } # install vscode inc config and extensions
+    - { role: apt_clean, tags: ["apt_clean"] } # clean up

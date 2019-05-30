@@ -1,0 +1,32 @@
+- name: Install gnome-session
+  apt:
+    name: gnome-session
+
+- name: Remove ubuntu-session
+  apt:
+    name: ubuntu-session
+    state: absent
+
+- name: Set gdm theme to default
+  alternatives:
+    name: gdm3.css
+    path: /usr/share/gnome-shell/theme/gnome-shell.css
+
+- name: Copy background over
+  copy:
+    src=Greenish_by_EstebanMitnick.jpg
+    dest=/usr/share/backgrounds/Greenish_by_EstebanMitnick.jpg
+
+- name: Creating gnome.d directory for DConf
+  file: path=/etc/dconf/db/gnome.d state=directory mode=0755
+
+- name: Copy background over
+  copy: src=00-re-je dest=/etc/dconf/db/gnome.d/00-re-je mode=0644
+  notify: update DConf database
+
+- name: Configuring DConf
+  lineinfile: path=/etc/dconf/profile/user line={{ item }} create=yes mode=0644
+  with_items:
+    - "user-db:user"
+    - "system-db:gnome"
+# set plain blue as screen lock image

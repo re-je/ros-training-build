@@ -1,0 +1,42 @@
+- name: Install python stuff
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - pylint
+      - python-future
+      - virtualenv
+      - pylint3
+      - python3-isort
+      - python3-pip
+      - python3-setuptools
+
+- name: Create system environment group
+  group: name=env state=present
+
+- name: Add user to system environment group
+  user: name={{ ros_user }} groups=env append=yes
+
+- name: Create system environment dir
+  file: path=/usr/local/env state=directory group=env mode=2775
+
+- name: Install black into virtual environment
+  pip: name=black virtualenv=/usr/local/env/black virtualenv_python=python3.6
+
+- name: Link black to bin
+  file: src=/usr/local/env/black/bin/black dest=/usr/local/bin/black state=link
+
+- name: Change file ownership, group and permissions
+  file:
+    path: /home/{{ ros_user }}/code
+    state: directory
+    owner: "{{ ros_user }}"
+    group: "{{ ros_user }}"
+    mode: "0755"
+
+- name: Install skel.py
+  copy:
+    src: skel.py
+    dest: /home/{{ ros_user }}/code/skel.py
+    owner: "{{ ros_user }}"
+    group: "{{ ros_user }}"

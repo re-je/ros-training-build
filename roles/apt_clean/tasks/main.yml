@@ -1,0 +1,47 @@
+---
+# Clean up the build
+
+# TODO: it should also clear bash history etc.
+
+- name: Apt - Remove unused dependency packages and cleans the local repository
+  apt: autoclean=yes autoremove=yes
+- name: Apt - Removes all packages from the package cache
+  command: apt-get clean warn=False
+
+# stat -c %a <file>
+
+- name: Clean apt lists
+  file:
+    state: "{{ item }}"
+    path: "/var/lib/apt/lists/"
+    owner: root # set your owner, group, and mode accordingly
+    group: root
+    mode: "0755"
+  with_items:
+    - absent
+    - directory
+
+- name: Clean /tmp
+  file:
+    state: "{{ item }}"
+    path: "/tmp"
+    owner: root # set your owner, group, and mode accordingly
+    group: root
+    mode: "1777"
+  with_items:
+    - absent
+    - directory
+
+- name: Clean /var/tmp
+  file:
+    state: "{{ item }}"
+    path: "/var/tmp/"
+    owner: root # set your owner, group, and mode accordingly
+    group: root
+    mode: "1777"
+  with_items:
+    - absent
+    - directory
+
+- file: path=/home/{{ros_user}}/.bash_history state=absent
+- file: path=/home/{{ros_user}}/.cache state=absent

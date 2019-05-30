@@ -1,0 +1,87 @@
+---
+# Setting up user and UI for docker container
+
+- name: Install functional command-line system
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - git
+      - gnupg
+      - htop
+      - iproute2
+      - iputils-ping
+      - keyutils
+      - less
+      - mtr
+      - packagekit-command-not-found
+      - pigz
+      - silversearcher-ag
+      - sudo
+      - tmux
+      - traceroute
+      - tree
+      - ubuntu-standard # meta package
+      - unzip
+      - vim
+      - whois
+      - zip
+
+- name: Install some basic GUI and sound libs as well as terminator
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - dbus-x11
+      - dmz-cursor-theme
+      - fonts-dejavu
+      - fonts-liberation
+      - hicolor-icon-theme
+      - libasound2
+      - libcanberra-gtk-module
+      - libcanberra-gtk3-0
+      - libcanberra-gtk3-module
+      - libdbus-glib-1-2
+      - libexif12
+      - libgl1-mesa-dri
+      - libgl1-mesa-glx
+      - libgtk2.0-0
+      - libxt6
+      - pulseaudio
+      - terminator
+
+- name: Update all packages to the latest version
+  command: update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX
+
+- name: Adding ros user
+  user:
+    name: "{{ros_user}}"
+    password: $6$MTh2qwFzGBm7t.D2$twdBMfIgi6TdRae/BMtdG5V4BeaD5KBY7eWPU8nq/6beYSf.xk1SJAscGrOoZEtiCkCTlxv1yjJK22LutaOlK/
+    shell: /bin/bash
+    comment: Academy User
+    uid: 1000
+    # group: "{{ros_user}}"
+    groups: adm,sudo,plugdev,cdrom
+    append: yes
+
+- name: Install standard directories
+  command: xdg-user-dirs-update
+  become: yes
+  become_user: "{{ ros_user }}"
+
+# - name: Give user passwordless sudo.
+#   lineinfile:
+#     "dest=/etc/sudoers state=present regexp='^{{ros_user}}'
+#     line='{{ros_user}}  ALL=(ALL) NOPASSWD:  ALL' insertafter=EOF"
+
+# Add a source line to bashrc, only if there isn't already one
+- name: Update bashrc to point to ROS {{ros_release}}
+  lineinfile:
+    dest=~{{ros_user}}/.bashrc line="source /opt/ros/{{ros_release}}/setup.bash"
+    regexp='^source.*/setup\.bash' insertafter=EOF backup=yes
+  ignore_errors: true
+
+- name: Setup git name
+  command: git config --global user.name "{{ros_user}}"
+# - name: Setup git email
+#   command: git config --global user.email "{{ros_user_email}}"

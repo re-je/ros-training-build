@@ -1,0 +1,3 @@
+ros_release: melodic
+ros_user: academy
+ubuntu_release: bionic

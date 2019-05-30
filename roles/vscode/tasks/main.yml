@@ -1,0 +1,46 @@
+---
+# VSCode IDE installation
+
+- name: Add the Microsoft repo key
+  apt_key: id=BE1229CF url=https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Add Microsoft repo
+  copy:
+    dest=/etc/apt/sources.list.d/vscode.list content="deb
+    https://packages.microsoft.com/repos/vscode stable main" owner=root
+    group=root mode=644
+
+- name: Update package lists
+  apt: update_cache=yes
+
+- name: Install vscode stuff
+  apt:
+    name: code
+
+- name: Install vscode extensions
+  command: code --install-extension {{item}}
+  with_items:
+    - ms-python.python
+    - streetsidesoftware.code-spell-checker
+    - redhat.vscode-yaml
+    - dotjoshjohnson.xml
+    - esbenp.prettier-vscode
+  become: yes
+  become_user: "{{ ros_user }}"
+
+- name: Create config dir
+  file:
+    path: /home/{{ ros_user }}/.config/Code/User/
+    state: directory
+    owner: "{{ ros_user }}"
+    group: "{{ ros_user }}"
+    mode: "0775"
+    recurse: yes
+
+- name: Install vscode config
+  copy:
+    src: settings.json
+    dest: /home/{{ ros_user }}/.config/Code/User/settings.json
+    owner: "{{ ros_user }}"
+    group: "{{ ros_user }}"
+    mode: "0664"

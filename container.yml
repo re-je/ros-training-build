@@ -1,0 +1,30 @@
+---
+- hosts: all
+  vars:
+    ansible_bender:
+      base_image:
+        docker.io/osrf/ros:{{ ros_release }}-desktop-full-{{ ubuntu_release }}
+      layering: false
+      cache_tasks: false
+      target_image:
+        name: ros:{{ ros_release }}-training-{{ ubuntu_release }}
+        labels:
+          RUN:
+            podman run --rm --interactive --network host --tty --env
+            DISPLAY=$DISPLAY IMAGE
+        annotations:
+          gpuselect: nvidia
+        environment:
+          QT_X11_NO_MITSHM: "1"
+          LANG: en_GB.UTF-8
+        cmd: terminator
+        user: "{{ ros_user }}"
+
+  roles:
+    - { role: apt_setup, tags: ["apt_setup"] }
+    - { role: user_setup, tags: ["user_setup"] }
+    - { role: dotfiles, tags: ["dotfiles"] }
+    - { role: training_install, tags: ["training_install"] }
+    - { role: python, tags: ["python"] }
+    - { role: vscode, tags: ["vscode"] }
+    - { role: apt_clean, tags: ["apt_clean"] }

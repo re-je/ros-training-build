@@ -1,0 +1,26 @@
+---
+- name: Install training specific ROS packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - ros-{{ros_release}}-moveit
+      - ros-{{ros_release}}-turtlebot3-simulations
+    #   - ros-{{ros_release}}-gmapping
+    #   - ros-{{ros_release}}-joy
+    #   - ros-{{ros_release}}-joystick-drivers
+    #   - ros-{{ros_release}}-perception
+    #   - ros-{{ros_release}}-smach
+    #   - ros-{{ros_release}}-teleop-twist-joy
+    #   - ros-{{ros_release}}-turtlebot3-applications
+    #   - ros-{{ros_release}}-turtlesim
+    #   - ros-{{ros_release}}-urdf-tutorials
+
+- name: Install system tools used for the workshop
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - blender
+      - evince
+      - tig
