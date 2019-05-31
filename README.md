@@ -52,7 +52,7 @@ The container will be removed when closed.
         --interactive --tty \
         --privileged \
         --network host \
-        --hostname re-je --add-host re-je:127.0.0.1 \
+        --hostname re-je-tmp --add-host re-je-tmp:127.0.0.1 \
         --env DISPLAY=$DISPLAY \
         --volume /dev/dri:/dev/dri \
         localhost/ros:melodic-training-bionic
