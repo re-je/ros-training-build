@@ -2,8 +2,8 @@
 - hosts: localhost
   become: yes
   roles:
-    - { role: apt_setup, tags: ["apt_setup"] }
     - { role: minification, tags: ["minification"] }
+    - { role: apt_setup, tags: ["apt_setup"] }
     - { role: gnome, tags: ["gnome"] }
     - { role: user_setup, tags: ["user_setup"] }
     - { role: dotfiles, tags: ["dotfiles"] }

@@ -1,4 +1,7 @@
 ---
+- name: Update package lists
+  apt: update_cache=yes
+
 - name: Remove unneeded packages
   apt:
     name: "{{ packages }}"
