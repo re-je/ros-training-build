@@ -14,6 +14,11 @@
 
 - name: Copy background over
   copy:
+    src=Greenish_by_EstebanMitnick_re_je.jpg
+    dest=/usr/share/backgrounds/Greenish_by_EstebanMitnick_re_je.jpg
+
+- name: Copy screensaver background over
+  copy:
     src=Greenish_by_EstebanMitnick.jpg
     dest=/usr/share/backgrounds/Greenish_by_EstebanMitnick.jpg
 

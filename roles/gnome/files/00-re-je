@@ -1,2 +1,11 @@
+[system/locale]
+region='en_GB.UTF-8'
+
 [org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/Greenish_by_EstebanMitnick_re_je.jpg'
+
+[org/gnome/desktop/input-sources]
+sources=[('xkb', 'gb')]
+
+[org/gnome/desktop/screensaver]
 picture-uri='file:///usr/share/backgrounds/Greenish_by_EstebanMitnick.jpg'

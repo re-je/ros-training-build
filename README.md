@@ -4,18 +4,18 @@ Build tools for the [re.je](https://re.je) ROS-I training.
 
 > **NOTE:** This repo is a WIP
 
-## Usage - General
-
-Clone this repo:
-
-    git clone https://github.com/re-je/ros-training-build.git
-
 ## Usage - Bare Metal
 
 Install `ansible` and `git`
 
+    curl https://raw.githubusercontent.com/re-je/ros-training-build/master/roles/apt_setup/files/sources.list | \
+    sudo tee /etc/apt/sources.list > /dev/null
     sudo apt update
     sudo apt install -y ansible git
+
+Clone this repo:
+
+    git clone https://github.com/re-je/ros-training-build.git
 
 Run the bare metal playbooks.
 
