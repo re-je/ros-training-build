@@ -3,6 +3,7 @@
   become: yes
   roles:
     - { role: apt_setup, tags: ["apt_setup"] } # update, upgrade and set locales
+    - { role: minification, tags: ["minification"] } # update, upgrade and set locales
     - { role: gnome, tags: ["gnome"] } # install gnome-session and related settings
     - { role: user_setup, tags: ["user_setup"] } # setup user and install minimal system with GUI and sound libs
     - { role: dotfiles, tags: ["dotfiles"] } # install custom dotfiles
