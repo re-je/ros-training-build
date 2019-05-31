@@ -1,3 +1,11 @@
+- name: Install the full apt sources
+  copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Update package lists
   apt: update_cache=yes
 
