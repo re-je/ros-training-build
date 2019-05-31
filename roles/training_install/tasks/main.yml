@@ -23,4 +23,6 @@
     packages:
       - blender
       - evince
+      - liburdfdom-tools
       - tig
+      - xdot
