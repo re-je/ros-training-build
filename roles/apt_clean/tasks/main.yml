@@ -43,5 +43,14 @@
     - absent
     - directory
 
-- file: path=/home/{{ros_user}}/.bash_history state=absent
-- file: path=/home/{{ros_user}}/.cache state=absent
+# - name: remove any networks used during install
+#   command: nmcli --fields UUID con show | tail -n+2 | while read line; do nmcli con delete uuid  $line; done
+
+- name: Remove user files and folders populated during install
+  file:
+    state: absent
+    path: /home/{{ros_user}}/{{ item }}
+  with_items:
+    - .bash_history
+    - .mozilla
+    - .cache
