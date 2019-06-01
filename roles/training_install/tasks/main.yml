@@ -23,6 +23,7 @@
   vars:
     packages:
       - blender
+      - eog
       - evince
       - liburdfdom-tools
       - tig
