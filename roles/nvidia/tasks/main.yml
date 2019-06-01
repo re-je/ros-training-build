@@ -17,6 +17,9 @@
     regexp: WaylandEnable
     line: "WaylandEnable=false"
 
+- name: Set default login session for academy
+  copy: src=academy dest=/var/lib/AccountsService/users/academy
+
 - name: nvidia kargs
   lineinfile:
     dest: /etc/default/grub
