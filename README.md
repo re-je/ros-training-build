@@ -20,6 +20,10 @@ Run the bare metal playbooks.
     sudo ansible-playbook -i localhost bootstrap-ubuntu.yml
     sudo ansible-playbook -i localhost playbook.yml --skip-tags=chroot
 
+Remove any networks used during install:
+
+    nmcli --fields UUID con show | tail -n+2 | while read line; do nmcli con delete uuid  $line; done
+
 ## Usage - Container
 
 These commands use the
