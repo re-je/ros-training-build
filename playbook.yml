@@ -2,6 +2,7 @@
 - hosts: localhost
   become: yes
   roles:
+    - { role: chroot, tags: ["chroot"] }
     - { role: minification, tags: ["minification"] }
     - { role: apt_setup, tags: ["apt_setup"] }
     - { role: gnome, tags: ["gnome"] }

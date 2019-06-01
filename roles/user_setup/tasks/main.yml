@@ -64,12 +64,6 @@
     groups: adm,sudo,plugdev,cdrom
     append: yes
 
-- name: Remove live USB user
-  user:
-    name: ubuntu
-    state: absent
-    remove: yes
-
 - name: Install standard directories
   command: xdg-user-dirs-update
   become: yes

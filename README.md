@@ -8,8 +8,6 @@ Build tools for the [re.je](https://re.je) ROS-I training.
 
 Install `ansible` and `git`
 
-    curl https://raw.githubusercontent.com/re-je/ros-training-build/master/roles/apt_setup/files/sources.list | \
-    sudo tee /etc/apt/sources.list > /dev/null
     sudo apt update
     sudo apt install -y ansible git
 
@@ -20,7 +18,7 @@ Clone this repo:
 Run the bare metal playbooks.
 
     sudo ansible-playbook -i localhost bootstrap-ubuntu.yml
-    sudo ansible-playbook -i localhost playbook.yml
+    sudo ansible-playbook -i localhost playbook.yml --skip-tags=chroot
 
 ## Usage - Container
 
@@ -74,6 +72,24 @@ Create a persistent container
 Start the persistent container
 
     podman start reje-ros
+
+## Usage - Chroot
+
+Install `ansible` and `git`
+
+    curl https://raw.githubusercontent.com/re-je/ros-training-build/master/roles/apt_setup/files/sources.list | \
+    tee /etc/apt/sources.list > /dev/null
+    sudo apt update
+    sudo apt install -y ansible git
+
+Clone this repo:
+
+    git clone https://github.com/re-je/ros-training-build.git
+
+Run the bare metal playbooks.
+
+    sudo ansible-playbook -i localhost bootstrap-ubuntu.yml
+    sudo ansible-playbook -i localhost playbook.yml
 
 ## Attribution
 
