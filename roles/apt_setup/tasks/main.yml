@@ -1,22 +1,3 @@
-- name: change hostname to re-je
-  hostname:
-    name: "re-je"
-
-- name: add re-je to /etc/hosts
-  lineinfile:
-    dest: /etc/hosts
-    regexp: '^127\.0\.0\.1[ \t]+localhost'
-    line: "127.0.0.1 localhost re-je"
-    state: present
-
-- name: Install the full apt sources
-  copy:
-    src: sources.list
-    dest: /etc/apt/sources.list
-    owner: root
-    group: root
-    mode: "0644"
-
 - name: Update package lists
   apt: update_cache=yes
 
