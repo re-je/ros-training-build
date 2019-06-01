@@ -1,0 +1,6 @@
+[InputSource0]
+xkb=gb
+
+[User]
+XSession=gnome-xorg
+SystemAccount=false

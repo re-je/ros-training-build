@@ -2,10 +2,8 @@
   apt:
     name: gnome-session
 
-- name: Remove ubuntu-session
-  apt:
-    name: ubuntu-session
-    state: absent
+- name: Set default login session for academy
+  copy: src=academy dest=/var/lib/AccountsService/users/academy
 
 - name: Set gdm theme to default
   alternatives:

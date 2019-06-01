@@ -1,0 +1,24 @@
+- name: blacklist nouveau
+  lineinfile:
+    path: /etc/modprobe.d/blacklist-nvidia-nouveau.conf
+    regexp: "^blacklist nouveau"
+    line: "blacklist nouveau"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Auto install Nvidia drivers
+  command: ubuntu-drivers autoinstall
+
+- name: Set gdm to xorg
+  lineinfile:
+    dest: /etc/gdm/custom.conf
+    regexp: WaylandEnable
+    line: "WaylandEnable=false"
+
+- name: nvidia kargs
+  lineinfile:
+    dest: /etc/default/grub
+    regexp: "^GRUB_CMDLINE_LINUX"
+    line: GRUB_CMDLINE_LINUX="nouveau.blacklist=1"
