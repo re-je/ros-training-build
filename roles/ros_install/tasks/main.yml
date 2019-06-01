@@ -39,6 +39,5 @@
       - python-rosinstall
       - python-pip
       - ssh
-
-- name: rosdep init
-  command: rosdep init creates=/etc/ros/rosdep/sources.list.d/20-default.list
+# - name: rosdep init
+#   command: rosdep init creates=/etc/ros/rosdep/sources.list.d/20-default.list
