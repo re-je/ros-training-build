@@ -35,25 +35,16 @@ of that project.
     pip3 install --user ansible ansible-bender
     ansible-bender build container.yml
 
-### Enable connections to xorg
-
-> **NOTE:** Adjusting the permissions to the X server host is not the safest and
-> will be replaced in this documentation shortly
-
-    xhost +local:root
-
-After the container has been closed run.
-
-    xhost -local:root
-
 ### Run one-off
 
 The container will be removed when closed.
 
     podman run --rm \
         --interactive --tty \
-        --privileged \
+        --security-opt label=disable \
         --network host \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
         --hostname re-je-tmp --add-host re-je-tmp:127.0.0.1 \
         --env DISPLAY=$DISPLAY \
         --volume /dev/dri:/dev/dri \
@@ -65,9 +56,11 @@ Create a persistent container
 
     podman create \
         --interactive --tty \
-        --privileged \
+        --security-opt label=disable \
         --name reje-ros \
         --network host \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
         --hostname re-je --add-host re-je:127.0.0.1 \
         --env DISPLAY=$DISPLAY \
         --volume /dev/dri:/dev/dri \
