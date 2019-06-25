@@ -26,5 +26,6 @@
       - eog
       - evince
       - liburdfdom-tools
+      - nano
       - tig
       - xdot

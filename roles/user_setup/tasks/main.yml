@@ -6,6 +6,7 @@
     name: "{{ packages }}"
   vars:
     packages:
+      - ecryptfs-utils
       - git
       - gnupg
       - htop
@@ -77,8 +78,18 @@
 # Add a source line to bashrc, only if there isn't already one
 - name: Update bashrc to point to ROS {{ros_release}}
   lineinfile:
-    dest=~{{ros_user}}/.bashrc line="source /opt/ros/{{ros_release}}/setup.bash"
-    regexp='^source.*/setup\.bash' insertafter=EOF backup=yes
+    dest: ~{{ros_user}}/.bashrc
+    line: "source /opt/ros/{{ros_release}}/setup.bash"
+    regexp: '^source.*/setup\.bash'
+    insertafter: EOF
+  ignore_errors: true
+
+- name: Update bashrc to use ip addresses on the ros network
+  lineinfile:
+    dest: ~{{ros_user}}/.bashrc
+    line: "export ROS_HOSTNAME=`hostname -I | head -n 1 | tr -d '[:space:]'`"
+    regexp: "^export ROS_HOSTNAME"
+    insertafter: EOF
   ignore_errors: true
 
 - name: Setup git name

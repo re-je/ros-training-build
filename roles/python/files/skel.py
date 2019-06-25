@@ -9,7 +9,7 @@ import logging
 import sys
 from builtins import input, range
 
-# root logger config
+# Root logger config
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 
 

@@ -1,6 +1,10 @@
 - name: Install gnome-session
   apt:
-    name: gnome-session
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - gnome-session
+      - chrome-gnome-shell
 
 - name: Set default login session for academy
   copy: src=academy dest=/var/lib/AccountsService/users/academy
