@@ -18,5 +18,6 @@
   "editor.codeActionsOnSaveTimeout": 3000,
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "editor.minimap.enabled": false
 }
