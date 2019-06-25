@@ -1,0 +1,3 @@
+- name: Set Hardware clock to local to work with Windows dule boot
+  timezone:
+    hwclock: local
