@@ -15,8 +15,10 @@
     \(restricted\|universe\|multiverse\)\)/\1/" /etc/apt/sources.list
   when: sources_test_result.rc == 0
 
-- name: Add the ROS repo key
-  apt_key: id=B01FA116 url=http://packages.ros.org/ros.key
+- name: Add an ROS key by id from a keyserver
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
 - name: Add ROS repo
   copy:
