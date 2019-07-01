@@ -6,10 +6,12 @@
     - { role: minification, tags: ["minification"] }
     - { role: apt_setup, tags: ["apt_setup"] }
     - { role: gnome, tags: ["gnome"] }
+    # - { role: virtualbox, tags: ["virtualbox"] }
     - { role: user_setup, tags: ["user_setup"] }
     - { role: dotfiles, tags: ["dotfiles"] }
     - { role: ros_install, tags: ["ros_install"] }
     - { role: training_install, tags: ["training_install"] }
     - { role: python, tags: ["python"] }
     - { role: vscode, tags: ["vscode"] }
+    - { role: containers, tags: ["containers"] }
     - { role: apt_clean, tags: ["apt_clean"] }
