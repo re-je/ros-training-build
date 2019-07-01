@@ -1,6 +1,6 @@
 ---
 - name: Add the podman repo
-- apt_repository:
+  apt_repository:
     repo: ppa:projectatomic/ppa
 
 - name: Install vscode stuff
