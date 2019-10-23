@@ -60,7 +60,6 @@
     password: $6$MTh2qwFzGBm7t.D2$twdBMfIgi6TdRae/BMtdG5V4BeaD5KBY7eWPU8nq/6beYSf.xk1SJAscGrOoZEtiCkCTlxv1yjJK22LutaOlK/
     shell: /bin/bash
     comment: Academy User
-    uid: 1000
     # group: "{{ros_user}}"
     groups: adm,sudo,plugdev,cdrom
     append: yes
