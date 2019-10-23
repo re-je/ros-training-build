@@ -14,6 +14,7 @@ Install `ansible` and `git`
 Clone this repo:
 
     git clone https://github.com/re-je/ros-training-build.git
+    cd ros-training-build
 
 Run the bare metal playbooks.
 
