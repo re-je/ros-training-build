@@ -3,6 +3,10 @@
 
 # TODO: it should also clear bash history etc.
 
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
 - name: Apt - Remove unused dependency packages and cleans the local repository
   apt: autoclean=yes autoremove=yes
 - name: Apt - Removes all packages from the package cache
