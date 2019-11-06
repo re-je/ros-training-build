@@ -83,13 +83,13 @@
     insertafter: EOF
   ignore_errors: true
 
-- name: Update bashrc to use ip addresses on the ros network
-  lineinfile:
-    dest: ~{{ros_user}}/.bashrc
-    line: "export ROS_HOSTNAME=`hostname -I | head -n 1 | tr -d '[:space:]'`"
-    regexp: "^export ROS_HOSTNAME"
-    insertafter: EOF
-  ignore_errors: true
+# - name: Update bashrc to use ip addresses on the ros network
+#   lineinfile:
+#     dest: ~{{ros_user}}/.bashrc
+#     line: "export ROS_HOSTNAME=`hostname -I | head -n 1 | tr -d '[:space:]'`"
+#     regexp: "^export ROS_HOSTNAME"
+#     insertafter: EOF
+#   ignore_errors: true
 
 - name: Setup git name
   command: git config --global user.name "{{ros_user}}"
