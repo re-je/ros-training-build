@@ -16,7 +16,7 @@
     state: present
 
 - name: Configure machine-id and divert
-  command: dbus-uuidgen > /var/lib/dbus/machine-id
+  sheel: dbus-uuidgen > /var/lib/dbus/machine-id
 
 - name: Configure machine-id link
   file:
@@ -38,19 +38,23 @@
 - name: Install packages needed for Live System
   apt:
     pkg:
-    - ubuntu-standard
     - casper
-    - lupin-casper
     - discover
+    - fwts
+    - grub-efi-amd64-signed
     - laptop-detect
-    - os-prober
-    - network-manager
-    - resolvconf
+    - linux-signed-generic
+    - locales
+    - lupin-casper
     - net-tools
+    - network-manager
+    - openssl
+    - os-prober
+    - resolvconf
+    - sbsigntool
+    - ubuntu-standard
     - wireless-tools
     - wpagui
-    - locales
-    - linux-generic
 
 - name: Install window manager
   apt:
@@ -233,6 +237,11 @@
     - zeitgeist-core
     state: absent
 
+- name: Ensure specifc packages are not removed by acident
+  apt:
+    name: gnome-control-center
+    state: present
+
 # - name: Set default locale to C.UTF-8
 #   debconf:
 #     name: locales
@@ -258,16 +267,16 @@
 - name: Configure network-manage dpkg
   command: dpkg-reconfigure network-manager
 
-- name: Cleanup the chroot environment truncate
-  command: truncate -s 0 /etc/machine-id 
+# - name: Cleanup the chroot environment truncate
+#   command: truncate -s 0 /etc/machine-id 
 
-- name: Remove the diversion (delete file)
-  file:
-    path: /sbin/initctl
-    state: absent
+# - name: Remove the diversion (delete file)
+#   file:
+#     path: /sbin/initctl
+#     state: absent
 
-- name: Remove the diversion
-  command: dpkg-divert --rename --remove /sbin/initctl
+# - name: Remove the diversion
+#   command: dpkg-divert --rename --remove /sbin/initctl
 
 - name: Remove live USB user
   user:
