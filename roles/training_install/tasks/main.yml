@@ -5,7 +5,9 @@
   vars:
     packages:
       - ros-{{ros_release}}-dwa-local-planner
+      - ros-{{ros_release}}-gmapping
       - ros-{{ros_release}}-moveit
+      - ros-{{ros_release}}-turtlebot3-description
       - ros-{{ros_release}}-turtlebot3-simulations
     #   - ros-{{ros_release}}-gmapping
     #   - ros-{{ros_release}}-joy
