@@ -6,13 +6,13 @@
       - pylint
       - pylint3
       - python-catkin-tools
-      - python3-catkin-pkg
       - python-future
+      - python3-catkin-pkg-modules
       - python3-dev
       - python3-isort
       - python3-numpy
       - python3-pip
-      - python3-rospkg
+      - python3-rospkg-modules
       - python3-setuptools
       - python3-yaml
       - virtualenv
