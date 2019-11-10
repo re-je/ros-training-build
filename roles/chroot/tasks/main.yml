@@ -174,7 +174,7 @@
     - zeitgeist-core
     state: absent
 
-- name: Ensure specifc packages are not removed by acident
+- name: Ensure specific packages are not removed by accident
   apt:
     pkg:
     - gnome-control-center
