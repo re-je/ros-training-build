@@ -33,7 +33,7 @@
     group: root
     mode: "1777"
   with_items:
-    - absent
+    # - absent
     - directory
 
 - name: Clean /var/tmp
@@ -44,7 +44,7 @@
     group: root
     mode: "1777"
   with_items:
-    - absent
+    # - absent
     - directory
 
 # - name: remove any networks used during install
