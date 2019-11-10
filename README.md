@@ -71,23 +71,33 @@ Start the persistent container
 
     podman start reje-ros
 
-## Usage - Chroot
+## Usage - Chroot Minimal base image
 
-Install `ansible` and `git`
+Set up mirrors:
 
-    curl https://raw.githubusercontent.com/re-je/ros-training-build/master/roles/apt_setup/files/sources.list | \
-    tee /etc/apt/sources.list > /dev/null
-    sudo apt update
-    sudo apt install -y ansible git
+```
+cat <<EOF > /etc/apt/sources.list
+deb http://gb.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse 
+deb-src http://gb.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse 
 
-Clone this repo:
+deb http://gb.archive.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse 
+deb-src http://gb.archive.ubuntu.com/ubuntu/ bionic-security main restricted universe multiverse 
 
+deb http://gb.archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse 
+deb-src http://gb.archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse    
+EOF
+```
+
+Run the setup ansible and run chroot role:
+
+    apt update
+    apt install -y ansible git
     git clone https://github.com/re-je/ros-training-build.git
-
-Run the bare metal playbooks.
-
-    sudo ansible-playbook -i localhost bootstrap-ubuntu.yml
-    sudo ansible-playbook -i localhost playbook.yml
+    cd ros-training-build/
+    ansible-playbook -i localhost bootstrap-ubuntu.yml
+    ansible-playbook -i localhost playbook.yml -t chroot
+    cd ..
+    rm -rf ros-training-build/
 
 ## Attribution
 
