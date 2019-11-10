@@ -3,5 +3,6 @@
   become: yes
   roles:
     - { role: chroot, tags: ["chroot"] }
+    - { role: user_setup, tags: ["user_setup"] }
     - { role: apt_setup, tags: ["apt_setup"] }
     - { role: apt_clean, tags: ["apt_clean"] }
