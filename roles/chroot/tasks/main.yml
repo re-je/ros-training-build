@@ -1,66 +1,3 @@
-- name: Set a custom hostname
-  hostname:
-    name: "re-je"
-
-- name: Configure apt sources.list
-  copy:
-    src: sources.list
-    dest: /etc/apt/sources.list
-    owner: root
-    group: root
-    mode: "0644"
-
-- name: Install systemd
-  apt:
-    name: systemd-sysv
-    state: present
-
-- name: Configure machine-id and divert
-  sheel: dbus-uuidgen > /var/lib/dbus/machine-id
-
-- name: Configure machine-id link
-  file:
-    src: /etc/machine-id
-    dest: /var/lib/dbus/machine-id
-    state: link
-    force: yes
-
-- name: Configure divert
-  command: dpkg-divert --local --rename --add /sbin/initctl
-
-- name: Configure divert link
-  file:
-    src: /bin/true
-    dest: /sbin/initctl
-    state: link
-    force: yes
-
-- name: Install packages needed for Live System
-  apt:
-    pkg:
-    - casper
-    - discover
-    - fwts
-    - grub-efi-amd64-signed
-    - laptop-detect
-    - linux-signed-generic
-    - locales
-    - lupin-casper
-    - net-tools
-    - network-manager
-    - openssl
-    - os-prober
-    - resolvconf
-    - sbsigntool
-    - ubuntu-standard
-    - wireless-tools
-    - wpagui
-
-- name: Install window manager
-  apt:
-    name: ubuntu-gnome-desktop
-    state: present
-
 # https://people.canonical.com/~ubuntu-archive/seeds/ubuntu.bionic/desktop.minimal-remove
 - name: Minimise desktop
   apt:
@@ -239,44 +176,10 @@
 
 - name: Ensure specifc packages are not removed by acident
   apt:
-    name: gnome-control-center
+    pkg:
+    - gnome-control-center
+    - gnome-system-monitor
     state: present
-
-# - name: Set default locale to C.UTF-8
-#   debconf:
-#     name: locales
-#     question: locales/default_environment_locale
-#     value: C.UTF-8
-#     vtype: select
-
-# - name: set to generate locales
-#   debconf:
-#     name: locales
-#     question: locales/locales_to_be_generated
-#     value: en_GB.UTF-8 UTF-8, en_GB ISO-8859-1
-#     vtype: multiselect
-
-- name: Configure network-manage config
-  copy:
-    src: NetworkManager.conf
-    dest: /etc/NetworkManager/NetworkManager.conf
-    owner: root
-    group: root
-    mode: "0644"
-
-- name: Configure network-manage dpkg
-  command: dpkg-reconfigure network-manager
-
-# - name: Cleanup the chroot environment truncate
-#   command: truncate -s 0 /etc/machine-id 
-
-# - name: Remove the diversion (delete file)
-#   file:
-#     path: /sbin/initctl
-#     state: absent
-
-# - name: Remove the diversion
-#   command: dpkg-divert --rename --remove /sbin/initctl
 
 - name: Remove live USB user
   user:
