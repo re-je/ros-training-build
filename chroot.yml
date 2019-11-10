@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - { role: apt_setup, tags: ["apt_setup"] }
+    - { role: chroot, tags: ["chroot"] }
+    - { role: apt_clean, tags: ["apt_clean"] }
