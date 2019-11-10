@@ -95,7 +95,7 @@ Run the setup ansible and run chroot role:
     git clone https://github.com/re-je/ros-training-build.git
     cd ros-training-build/
     ansible-playbook -i localhost bootstrap-ubuntu.yml
-    ansible-playbook -i localhost playbook.yml -t chroot
+    ansible-playbook -i localhost chroot.yml
     cd ..
     rm -rf ros-training-build/
 
