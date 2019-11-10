@@ -54,6 +54,12 @@
 - name: Update all packages to the latest version
   command: update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX
 
+- name: Remove live USB user
+  user:
+    name: ubuntu
+    state: absent
+    remove: yes
+
 - name: Adding ros user
   user:
     name: "{{ros_user}}"

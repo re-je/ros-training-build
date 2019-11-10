@@ -180,9 +180,3 @@
     - gnome-control-center
     - gnome-system-monitor
     state: present
-
-- name: Remove live USB user
-  user:
-    name: ubuntu
-    state: absent
-    remove: yes
