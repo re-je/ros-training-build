@@ -15,5 +15,6 @@
       - wireguard-dkms
       - wireguard-tools
       - python2.7
+      - resolvconf
     state: present
     update_cache: true
