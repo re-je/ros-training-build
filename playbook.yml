@@ -14,4 +14,5 @@
     - { role: python, tags: ["python"] }
     - { role: vscode, tags: ["vscode"] }
     - { role: containers, tags: ["containers"] }
+    - { role: wireguard, tags: ["wireguard"] }
     - { role: apt_clean, tags: ["apt_clean"] }

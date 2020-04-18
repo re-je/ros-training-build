@@ -1,0 +1,6 @@
+---
+# tasks file for wireguard_role
+
+- name: Install wireguard and other prequisites on the server
+  include: 'install_wireguard.yml'
+  tags: install_wireguard
