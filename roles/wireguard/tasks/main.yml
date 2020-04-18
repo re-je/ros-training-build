@@ -11,7 +11,7 @@
     state: directory
     mode: '0755'
 
-- name: Generate Key Pairs
-  shell: wg genkey | tee /etc/wireguard/privatekey | wg pubkey > /etc/wireguard/publickey
-  args:
-    creates: /etc/wireguard/privatekey
+# - name: Generate Key Pairs
+#   shell: wg genkey | tee /etc/wireguard/privatekey | wg pubkey > /etc/wireguard/publickey
+#   args:
+#     creates: /etc/wireguard/privatekey
