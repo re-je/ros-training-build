@@ -40,31 +40,38 @@ of that project.
 
 The container will be removed when closed.
 
-    podman run --rm \
-        --interactive --tty \
+    podman run --rm -it \
+        --userns=keep-id \
         --security-opt label=disable \
+        --privileged \
+        --device /dev/dri:/dev/dri \
         --network host \
+        --hostname re-je-tmp --add-host re-je-tmp:127.0.0.1 \
         -v /etc/localtime:/etc/localtime:ro \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        --hostname re-je-tmp --add-host re-je-tmp:127.0.0.1 \
-        --env DISPLAY=$DISPLAY \
-        --volume /dev/dri:/dev/dri \
+        -e DISPLAY=:0 \
+        -v /run/user/1000:/run/user/1000 \
+        -e XDG_RUNTIME_DIR=/run/user/1000 \
+        -e PULSE_SERVER=/run/user/1000/pulse/native \
         localhost/ros:melodic-training-bionic
 
 ### Persistent
 
 Create a persistent container
 
-    podman create \
-        --interactive --tty \
-        --security-opt label=disable \
+    podman create -it \
         --name reje-ros \
+        --security-opt label=disable \
+        --privileged \
+        --device /dev/dri:/dev/dri \
         --network host \
+        --hostname re-je --add-host re-je:127.0.0.1 \
         -v /etc/localtime:/etc/localtime:ro \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
-        --hostname re-je --add-host re-je:127.0.0.1 \
-        --env DISPLAY=$DISPLAY \
-        --volume /dev/dri:/dev/dri \
+        -e DISPLAY=:0 \
+        -v /run/user/1000:/run/user/1000 \
+        -e XDG_RUNTIME_DIR=/run/user/1000 \
+        -e PULSE_SERVER=/run/user/1000/pulse/native \
         localhost/ros:melodic-training-bionic
 
 Start the persistent container
