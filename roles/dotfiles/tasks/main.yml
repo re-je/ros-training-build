@@ -1,6 +1,6 @@
 - name: Create config dir
   file:
-    path: /home/{{ ros_user }}/.config
+    path: "{{ ros_user_home }}/.config"
     state: directory
     owner: "{{ ros_user }}"
     group: "{{ ros_user }}"
@@ -9,14 +9,14 @@
 - name: Install isort config
   copy:
     src: isort.cfg
-    dest: /home/{{ ros_user }}/.isort.cfg
+    dest: "{{ ros_user_home }}/.isort.cfg"
     owner: "{{ ros_user }}"
     group: "{{ ros_user }}"
 
 - name: Install pylint config
   copy:
     src: pylintrc
-    dest: /home/{{ ros_user }}/.config/pylintrc
+    dest: "{{ ros_user_home }}/.config/pylintrc"
     owner: "{{ ros_user }}"
     group: "{{ ros_user }}"
 # TODO add firefox home page

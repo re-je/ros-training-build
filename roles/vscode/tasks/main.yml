@@ -30,7 +30,7 @@
 
 - name: Create config dir
   file:
-    path: /home/{{ ros_user }}/.config/Code/User/
+    path: "{{ ros_user_home }}/.config/Code/User/"
     state: directory
     owner: "{{ ros_user }}"
     group: "{{ ros_user }}"
@@ -40,7 +40,7 @@
 - name: Install vscode config
   copy:
     src: settings.json
-    dest: /home/{{ ros_user }}/.config/Code/User/settings.json
+    dest: "{{ ros_user_home }}/.config/Code/User/settings.json"
     owner: "{{ ros_user }}"
     group: "{{ ros_user }}"
     mode: "0664"

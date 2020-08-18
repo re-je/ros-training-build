@@ -34,7 +34,7 @@
 
 - name: Change file ownership, group and permissions
   file:
-    path: /home/{{ ros_user }}/code
+    path: "{{ ros_user_home }}/code"
     state: directory
     owner: "{{ ros_user }}"
     group: "{{ ros_user }}"
@@ -43,6 +43,6 @@
 - name: Install skel.py
   copy:
     src: skel.py
-    dest: /home/{{ ros_user }}/code/skel.py
+    dest: "{{ ros_user_home }}/code/skel.py"
     owner: "{{ ros_user }}"
     group: "{{ ros_user }}"
