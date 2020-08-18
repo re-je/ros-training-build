@@ -50,6 +50,7 @@
       - libxt6
       - pulseaudio
       - terminator
+      - xdg-user-dirs
 
 - name: Update all packages to the latest version
   command: update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX
