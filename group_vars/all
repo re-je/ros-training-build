@@ -1,4 +1,5 @@
 ros_release: melodic
 ros_user: academy
-ros_user_home: "{% if ros_user == root %}/root{% else %}/home/{{ ros_user }}{% endif %}"
+# ros_user_home: "{% if ros_user == root %}/root{% else %}/home/{{ ros_user }}{% endif %}"
+ros_user_home: /home/{{ ros_user }}
 ubuntu_release: bionic
