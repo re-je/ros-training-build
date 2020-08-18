@@ -61,6 +61,7 @@ Create a persistent container
 
     podman create -it \
         --name reje-ros \
+        --userns=keep-id \
         --security-opt label=disable \
         --privileged \
         --device /dev/dri:/dev/dri \
