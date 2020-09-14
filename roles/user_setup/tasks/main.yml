@@ -90,6 +90,15 @@
     insertafter: EOF
   ignore_errors: true
 
+- name: Use ninja as the build system
+  lineinfile:
+    dest: ~{{ros_user}}/.bashrc
+    line: alias catkin_make_isolated="catkin_make_isolated --use-ninja"
+    regexp: '^alias.*catkin_make_isolated*'
+    insertafter: EOF
+  ignore_errors: true
+
+
 # - name: Update bashrc to use ip addresses on the ros network
 #   lineinfile:
 #     dest: ~{{ros_user}}/.bashrc
