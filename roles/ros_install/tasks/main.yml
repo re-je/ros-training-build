@@ -40,6 +40,7 @@
       - python-wstool
       - python-rosinstall
       - python-pip
+      - ninja-build
       - ssh
 # - name: rosdep init
 #   command: rosdep init creates=/etc/ros/rosdep/sources.list.d/20-default.list
